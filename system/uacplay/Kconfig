@@ -1,0 +1,32 @@
+config SYSTEM_UACPLAY
+	tristate "USB Audio to NuttX audio bridge"
+	default n
+	depends on UAC1 && AUDIO
+	select AUDIOUTILS_NXAUDIO_LIB
+	---help---
+		Bridge 48 kHz, stereo, 16-bit PCM from /dev/uac1 to a NuttX
+		audio output such as the STM32F4 Discovery CS43L22 codec.
+
+if SYSTEM_UACPLAY
+
+config SYSTEM_UACPLAY_PROGNAME
+	string "Program name"
+	default "uacplay"
+
+config SYSTEM_UACPLAY_PRIORITY
+	int "Task priority"
+	default 150
+
+config SYSTEM_UACPLAY_STACKSIZE
+	int "Task stack size"
+	default 3072
+
+config SYSTEM_UACPLAY_USBDEV
+	string "USB PCM device"
+	default "/dev/uac1"
+
+config SYSTEM_UACPLAY_AUDIODEV
+	string "Audio output device"
+	default "/dev/audio/pcm1"
+
+endif # SYSTEM_UACPLAY

@@ -1,0 +1,3 @@
+ifneq ($(CONFIG_SYSTEM_UACPLAY),)
+CONFIGURED_APPS += $(APPDIR)/system/uacplay
+endif
